@@ -8,7 +8,7 @@ import "./WeatherApp.css";
 
 function WeatherApp() {
   return (
-    <div className="conatiner">
+    <div className="container">
       <div className="weather-app">
         <div className="search">
           <div className="search-top">
