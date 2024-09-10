@@ -54,6 +54,32 @@ function WeatherApp() {
     }
   }
 
+  const getFormattedDate = () => {
+    const today = new Date();
+
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const day = days[today.getDay()];
+    const date = today.getDate();
+    const month = months[today.getMonth()];
+
+    return `${day}, ${date} ${month}`;
+  };
+
   const weatherImage = weatherData.weather
     ? weatherImages[weatherData.weather[0].main]
     : null;
@@ -105,7 +131,7 @@ function WeatherApp() {
               {weatherData.main ? Math.floor(weatherData.main.temp) : null}°
             </div>
             <div className="weather-date">
-              <p>Mon, 9 Sep</p>
+              <p>{getFormattedDate()}</p>
             </div>
             <div className="weather-data">
               <div className="humidity">
