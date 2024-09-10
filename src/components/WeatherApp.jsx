@@ -6,7 +6,21 @@ import snowy from "../assets/images/snowy.png";
 
 import "./WeatherApp.css";
 
+const apiKey = import.meta.env.VITE_WEATHER_FORECAST_API;
+
 function WeatherApp() {
+  async function fetchWeather() {
+    try {
+      const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=Bangalore&units=Metric&appid=${apiKey}`
+      );
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
   return (
     <div className="container">
       <div className="weather-app">
@@ -17,7 +31,10 @@ function WeatherApp() {
           </div>
           <div className="search-bar">
             <input type="text" placeholder="Enter Location" />
-            <i className="fa-solid fa-magnifying-glass"></i>
+            <i
+              className="fa-solid fa-magnifying-glass"
+              onClick={fetchWeather}
+            ></i>
           </div>
         </div>
         <div className="weather">

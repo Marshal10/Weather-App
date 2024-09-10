@@ -30,6 +30,7 @@
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
+  z-index: 10;
 }
 
 .search-top {
@@ -96,6 +97,7 @@
   margin-top: 25rem;
   font-size: 2rem;
   color: #484569;
+  z-index: 10;
 }
 
 .temp {
@@ -104,12 +106,14 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  z-index: 10;
 }
 
 .weather-date {
   font-size: 1.6rem;
   color: #484569;
   margin-bottom: 2rem;
+  z-index: 10;
 }
 
 .weather-data {
@@ -117,6 +121,7 @@
   display: flex;
   column-gap: 2rem;
   padding: 0 2rem;
+  z-index: 10;
 }
 
 .weather-data > div {
