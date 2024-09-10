@@ -14,6 +14,24 @@ function WeatherApp() {
   const [weatherData, setWeatherData] = useState({});
   const [error, setError] = useState("Please type a city name");
 
+  const weatherImages = {
+    Clear: sunny,
+    Clouds: cloudy,
+    Rain: rainy,
+    Snow: snowy,
+    Haze: cloudy,
+    Mist: cloudy,
+  };
+
+  const backgroundColors = {
+    Clear: "linear-gradient(to right, #f3b07c, #fcd283)",
+    Clouds: "linear-gradient(to right, #57d6d4, #71eeec)",
+    Rain: "linear-gradient(to right, #5bc8fb, #80eaff)",
+    Snow: "linear-gradient(to right, #aff2ff, #fff)",
+    Haze: "linear-gradient(to right, #57d6d4, #71eeec)",
+    Mist: "linear-gradient(to right, #57d6d4, #71eeec)",
+  };
+
   async function fetchWeather() {
     if (!searchLoc) return;
 
@@ -36,9 +54,24 @@ function WeatherApp() {
     }
   }
 
+  const weatherImage = weatherData.weather
+    ? weatherImages[weatherData.weather[0].main]
+    : null;
+
+  const backgroundGradientColor = weatherData.weather
+    ? backgroundColors[weatherData.weather[0].main]
+    : null;
+
   return (
-    <div className="container">
-      <div className="weather-app">
+    <div className="container" style={{ background: backgroundGradientColor }}>
+      <div
+        className="weather-app"
+        style={{
+          background: backgroundGradientColor
+            ? backgroundGradientColor.replace("to right", "to top")
+            : null,
+        }}
+      >
         <div className="search">
           {weatherData?.name && (
             <div className="search-top">
@@ -64,7 +97,7 @@ function WeatherApp() {
           <div className="error">{error}</div>
         ) : (
           <div className="weather">
-            <img src={sunny} alt="sunny" />
+            <img src={weatherImage} alt={weatherData.weather[0].main} />
             <div className="weather-type">
               {weatherData.weather ? weatherData.weather[0].main : null}
             </div>
