@@ -12,7 +12,7 @@ const apiKey = import.meta.env.VITE_WEATHER_FORECAST_API;
 function WeatherApp() {
   const [searchLoc, setSearchLoc] = useState("");
   const [weatherData, setWeatherData] = useState({});
-  const [error, setError] = useState("");
+  const [error, setError] = useState("Please type a city name");
 
   async function fetchWeather() {
     if (!searchLoc) return;
@@ -65,8 +65,12 @@ function WeatherApp() {
         ) : (
           <div className="weather">
             <img src={sunny} alt="sunny" />
-            <div className="weather-type">Clear</div>
-            <div className="temp">28°</div>
+            <div className="weather-type">
+              {weatherData.weather ? weatherData.weather[0].main : null}
+            </div>
+            <div className="temp">
+              {weatherData.main ? Math.floor(weatherData.main.temp) : null}°
+            </div>
             <div className="weather-date">
               <p>Mon, 9 Sep</p>
             </div>
@@ -74,12 +78,16 @@ function WeatherApp() {
               <div className="humidity">
                 <div className="data-name">Humidity</div>
                 <i className="fa-solid fa-droplet"></i>
-                <div className="data">55%</div>
+                <div className="data">
+                  {weatherData.main ? weatherData.main.humidity : null}%
+                </div>
               </div>
               <div className="wind">
                 <div className="data-name">Wind</div>
                 <i className="fa-solid fa-wind"></i>
-                <div className="data">3 km/hr</div>
+                <div className="data">
+                  {weatherData.wind ? weatherData.wind.speed : null} km/hr
+                </div>
               </div>
             </div>
           </div>
